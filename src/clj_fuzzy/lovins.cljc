@@ -189,8 +189,7 @@
 (defn- prep-word
   "Prepare a [word] for its passage through the stemmer."
   [word]
-  (-> (clojure.string/lower-case word)
-      (clean)))
+  (clean (clojure.string/lower-case word)))
 
 (defn- test-suffix-fn
   [word]

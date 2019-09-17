@@ -82,8 +82,7 @@
   "Prepare the given [string] for the stemmer by stripping it of any
   non-alphabetical characters and applying a lowercase transformation."
   [string]
-  (-> (clean-non-alphabetical string)
-      (clojure.string/lower-case)))
+  (clojure.string/lower-case (clean-non-alphabetical string)))
 
 (defn stem
   "Stem the given [word] with the Lancaster stemming algorithm."

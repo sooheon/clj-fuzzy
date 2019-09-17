@@ -19,7 +19,7 @@
 
 (defn- pad [word] (subs (str word "000") 0 4))
 
-(defn- word-tail [word] (apply str (drop 1 word)))
+(defn- word-tail [word] (clojure.string/join (drop 1 word)))
 
 (defn- compute-code-sequence
   "Compute the initial soundex code sequence for a [processed-word] tail."
@@ -43,5 +43,6 @@
         code-sequence (compute-code-sequence (word-tail processed-word))
         cleaned-sequence (clean-code-sequence code-sequence first-letter)]
     (pad (str first-letter
-              (apply str (filter #(not= \0 %)
-                                 (distinct-consecutive cleaned-sequence)))))))
+              (clojure.string/join
+               (filter #(not= \0 %)
+                       (distinct-consecutive cleaned-sequence)))))))

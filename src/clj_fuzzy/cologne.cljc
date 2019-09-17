@@ -76,7 +76,8 @@
   "Process the Cologne phonetic code for a single [word]."
   [word]
   (let [pword (partition-with-previous-and-next (prep-word word))]
-    (apply str (->> (map lookup-letter pword)
-                    (remove nil?)
-                    (distinct-consecutive)
-                    (remove zero?)))))
+    (->> (map lookup-letter pword)
+         (remove nil?)
+         (distinct-consecutive)
+         (remove zero?)
+         clojure.string/join)))

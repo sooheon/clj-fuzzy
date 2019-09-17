@@ -403,7 +403,7 @@
 
 (defn- define-start-position [pstring] (if (re-test? #"^GN|KN|PN|WR|PS$" (slice pstring 0 2)) 1 0))
 
-(defn- symbols->string [symbols] (slice (apply str (map name symbols)) 0 4))
+(defn- symbols->string [symbols] (slice (clojure.string/join (map name symbols)) 0 4))
 
 (defn process
   "Applying the Double Metaphone algorithm to a single [string]."

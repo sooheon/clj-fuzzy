@@ -120,7 +120,7 @@
   [word]
   (clean-non-alphabetical (clojure.string/lower-case word)))
 
-(defn- pad [word] (subs (str word (apply str (repeat 10 "1"))) 0 10))
+(defn- pad [word] (subs (str word (clojure.string/join (repeat 10 "1"))) 0 10))
 
 (defn- apply-algorithm
   [word method]
@@ -130,6 +130,6 @@
 (defn process
   "Apply the Caverphone algorithm to a [word] following the wanted [method]."
   ([word]
-    (apply-algorithm word :original))
+   (apply-algorithm word :original))
   ([word method]
-    (apply-algorithm word method)))
+   (apply-algorithm word method)))

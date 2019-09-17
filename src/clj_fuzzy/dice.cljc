@@ -16,8 +16,10 @@
 ;; Utilities
 (defn- letter-sets
   [n string]
-  (set (n-grams n (-> (clojure.string/replace string #"\s+" "")
-                      (clojure.string/upper-case)))))
+  (->> (clojure.string/replace string #"\s+" "")
+       (clojure.string/upper-case)
+       (n-grams n)
+       set))
 
 ;; Main functions
 (defn coefficient

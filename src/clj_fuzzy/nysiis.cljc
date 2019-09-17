@@ -98,9 +98,11 @@
   [method]
   (fn [string]
     (let [first-encoding (first-step (prep-string string) (get-patterns method :first))]
-      (apply str (concat (take 1 first-encoding)
-                         (second-step (if (= method :original) (eat first-encoding) first-encoding)
-                                      (get-patterns method :second)))))))
+      (clojure.string/join
+       (concat (take 1 first-encoding)
+               (second-step
+                (if (= method :original) (eat first-encoding) first-encoding)
+                (get-patterns method :second)))))))
 
 (def ^:private encoding-functions
   {:original (create-encoding-fn :original)

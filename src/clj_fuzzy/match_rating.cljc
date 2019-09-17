@@ -22,15 +22,16 @@
          (clojure.string/replace (eat word) #"[AEIOU]" "")))
 
 (defn- prep-word [word]
-  (-> (clojure.string/upper-case word)
-      (clean-non-alphabetical)))
+  (clean-non-alphabetical
+   (clojure.string/upper-case word)))
 
 (defn drop-nil [sequence] (remove nil? sequence))
 
 (defn- get-codex-letters [pword]
   (let [last-3 (min 3 (- (count pword) 3))]
-    (apply str (concat (take 3 pword)
-                       (take-last last-3 pword)))))
+    (clojure.string/join
+     (concat (take 3 pword)
+             (take-last last-3 pword)))))
 
 (defn- minimum-rating [codex-1 codex-2]
   (let [length (+ (count codex-1) (count codex-2))]

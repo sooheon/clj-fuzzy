@@ -16,7 +16,7 @@
   "Slice a [string] from [start] and up to [length]."
   [string start length]
   (let [offset (if (neg? start) (+ (count string) start) start)]
-    (apply str (take length (drop offset string)))))
+    (clojure.string/join (take length (drop offset string)))))
 
 (defn chop
   "Drop the last character of a [string]."
@@ -26,7 +26,7 @@
 (defn eat
   "Drop the first letter of a [string]."
   [string]
-  (apply str (drop 1 string)))
+  (clojure.string/join (drop 1 string)))
 
 (defn batch-replace
   "Apply several [replacements] to a [string]."
